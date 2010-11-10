@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="100%" height="100%" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+<polygon points="100,100 150,13 250,13 300,100 250,187 150,187"
+style="fill:red;
+stroke:blue;stroke-width:5"/>
+
+<polygon points="250,187 300,100 400,100 450,187 400,274 300,274"
+style="fill:red;
+stroke:green;stroke-width:5"/>
+</svg>

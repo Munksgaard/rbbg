@@ -1,0 +1,30 @@
+﻿How to calculate position of vertices
+=====================================
+
+There should be the same distance from the center of the hexagon to each of the vertices in the hexagon.
+If the length of one side of the hexagon is 100, the distance from the center to a vertex should be 100 too.
+ 
+			B   	100 (l)   C
+			   --------------             -|
+			 /|      |      / \            | 
+			/ |    h       /   \  100      |
+		   /  |   87 |    /     \          |
+		  /   |          / 100   \         >   173 (174)
+	  A  /_ j_| _ _ _|  /         \  D     |
+		 \ 50    50  Ԡ           /        |
+		  \                      /         |
+		   \                    /  100     |
+			\                  /           |
+			 \                /            |
+			   --------------  E          -|
+			 F
+
+l = length of one side
+h = length from middle of one side to the center of the hexagon = sqrt(l^2 - (l/2)^2)
+j = x increment from A to B (of F) = sqrt(l^2 - h^2)
+A = x, y
+B = A.x+j, A.y-h
+C = A.x+j+l, A.y-h
+D = A.x+2j+l, A.y
+E = A.x+j+l, A.y+h
+F = A.x+j, A.y+h
