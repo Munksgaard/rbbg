@@ -1,14 +1,11 @@
-﻿<?xml version="1.0" standalone="no"?>
+<?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
 "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 
 <svg width="100%" height="100%" version="1.1"
 xmlns="http://www.w3.org/2000/svg">
-<polygon points="100,100 150,13 250,13 300,100 250,187 150,187"
-style="fill:red;
-stroke:blue;stroke-width:5"/>
-
-<polygon points="250,187 300,100 400,100 450,187 400,274 300,274"
-style="fill:red;
-stroke:green;stroke-width:5"/>
+<polygon points="0,86.60254 50.0,0.0 150.0,0.0 200.0,86.60254 150.0,173.20508 50.0,173.20508 50.0,173.20508" style="fill:WHITE; stroke:BLACK; stroke-width:10" />
+<polygon points="150.0,173.20508 200.0,86.60254 300.0,86.60254 350.0,173.20508 300.0,259.80762 200.0,259.80762 200.0,259.80762" style="fill:WHITE; stroke:BLACK; stroke-width:10" />
+<polygon points="0,259.80762 50.0,173.20508 150.0,173.20508 200.0,259.80762 150.0,346.41016 50.0,346.41016 50.0,346.41016" style="fill:BLUE; stroke:PURPLE; stroke-width:10" />
+<polygon points="150.0,346.41016 200.0,259.80762 300.0,259.80762 350.0,346.41016 300.0,433.0127 200.0,433.0127 200.0,433.0127" style="fill:RED; stroke:GREEN; stroke-width:2" />
 </svg>
