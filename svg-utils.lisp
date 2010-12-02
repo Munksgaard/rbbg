@@ -1,4 +1,4 @@
-(defstruct hexagon
+(defstruct (hexagon (:conc-name nil))
   x ; få lavet alias ting
   y
   (color 'white)
@@ -11,15 +11,14 @@
   (sqrt (- (expt side-length 2) (expt (tip-height side-length) 2))))
 
 (defun vertices-pixel-coords (a-offset side-length)
-  (let* ((h (tip-height side-length))
-         (j (tip-base side-length)))
+  (let ((h (tip-height side-length))
+        (j (tip-base side-length)))
     (list a-offset 
-          (cons (+ (x a-offset) j) (- (y a-offset) h))
-          (cons (+ (x a-offset) j side-length) (- (y a-offset) h))
-          (cons (+ (x a-offset) (* 2 j) side-length) (y a-offset))
-          (cons (+ (x a-offset) j side-length) (+ (y a-offset) h))
-          (cons (+ (x a-offset) j) (+ (y a-offset) h))
-          (cons (+ (x a-offset) j) (+ (y a-offset) h)))))
+          (cons (+ (car a-offset) j) (- (cdr a-offset) h))
+          (cons (+ (car a-offset) j side-length) (- (cdr a-offset) h))
+          (cons (+ (car a-offset) (* 2 j) side-length) (cdr a-offset))
+          (cons (+ (car a-offset) j side-length) (+ (cdr a-offset) h))
+          (cons (+ (car a-offset) j) (+ (cdr a-offset) h)))))
 
 (defun hexagon-pixel-offset (hexagon side-length)
   (let ((h (tip-height side-length))
