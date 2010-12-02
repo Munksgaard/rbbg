@@ -1,0 +1,70 @@
+<svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" onmouseup="add(evt)">
+<script><![CDATA[
+
+var xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink"
+    Root=document.documentElement
+
+function assignAttr(O,A){
+  for (i in A) O.setAttributeNS(null,i, A[i])
+} 
+
+function add(evt){
+  var C=document.createElementNS(xmlns,"polygon");
+  var stroke=Color();
+  var stroke_width="5";
+  var style="fill:" + Color();
+  var points = hexagon_vertices(evt.clientX, evt.clientY, 100);
+  var Attr={
+    "points":points,
+    "stroke":stroke,
+    "style":style,
+    "stroke-width":stroke_width,
+  }
+  assignAttr(C,Attr);
+  //alert(C);
+  Root.appendChild(C);
+}
+
+function Color(){
+  return "rgb("+parseInt(Math.random()*255)+","+parseInt(Math.random()*255)+","+parseInt(Math.random()*255)+")";
+}
+
+function tip_height(side_length) {
+  var result=Math.sqrt(Math.pow(side_length, 2) - Math.pow(side_length / 2, 2))
+  //alert(result);
+  return result;
+}
+
+function tip_base(side_length) {
+  var result=Math.sqrt(Math.pow(side_length, 2) - Math.pow(tip_height(side_length), 2));
+  //alert(result);
+  return(result);
+}
+
+function hexagon_vertices(x, y, side_length) {
+  var h = tip_height(side_length);
+  var b = tip_base(side_length);
+  var vertices = new Array(6);
+  vertices[0] = x + "," + y;
+  vertices[1] = (x + b) + "," + (y - h);
+  vertices[2] = (x + b + side_length) + "," + (y - h);
+  vertices[3] = (x + (2 * b) + side_length) + "," + y;
+  vertices[4] = (x + b + side_length) + "," + (y + h);
+  vertices[5] = (x + b) + "," + (y + h);
+  
+  result = ""
+  for (var i = 0; i < 6; i++) {
+    result = result + vertices[i] + " ";
+  }
+  //alert(result);
+  return(result);
+}
+
+function teste() {
+  alert(2 + "hej" + 5)
+}
+]]>
+</script>
+	
+</svg>
