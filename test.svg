@@ -1,29 +1,106 @@
-<svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" onmouseup="add(evt)">
-<script><![CDATA[
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" onload="init(evt)">
+<script>
+<![CDATA[
 
-var xmlns="http://www.w3.org/2000/svg"
-    xlink="http://www.w3.org/1999/xlink"
-    Root=document.documentElement
+var xmlns="http://www.w3.org/2000/svg";
+var xlink="http://www.w3.org/1999/xlink";
+var Root=document.documentElement;
+var side_length=20;
+var stroke_width=2;
+var stroke_highlight=3;
+var grid_width=20;
+var grid_height=15;
+var m_up=false;
+
+function init(evt) {
+  var width = pixelwidth(grid_width, side_length);
+  var height = pixelheight(grid_height, side_length);
+  Root.setAttributeNS(null,"width",width + "px");
+  Root.setAttributeNS(null,"height",height + "px");
+
+  Root.setAttributeNS(null, "onmousedown","mousedown(evt)");
+  Root.setAttributeNS(null, "onmouseup","mouseup(evt)");
+
+  init_hexgrid(evt);
+}
+
+function mousedown(evt) {
+  m_flag = true;
+  changecolor(evt);
+}
+
+function mouseup(evt) {
+  m_flag = false;
+}
+
+function pixelwidth(n, l) {
+  return((n * 2 * l) - ((n - 1) * tip_base(l)));
+}
+
+function pixelheight(n, l) {
+  return(2 * tip_height(l) * n);
+}
+
+function init_hexgrid(evt) {
+  n = hexgrid_underflow(grid_width);
+  for (var x = 0; x < n; x++) {
+    for (var y = (0 - n); y < (n + grid_height); y++) {
+
+      var h = tip_height(side_length);
+      var b = tip_base(side_length);
+      var x_pixel = (2*side_length - b) * x;
+      var y_pixel = (2 * h * y) + ((x + 1) * h);
+      //alert(x_pixel);
+      //alert(y_pixel);
+      add_hexagon(x_pixel, y_pixel, x, y)
+    }
+  }
+}
+
+function hexgrid_underflow(grid_width) {
+  // Calculates the amount of hexagons needed on the vertical axis to get a 
+  //rectangular grid of a certain size
+  return(grid_width - 1) + 1;
+}
 
 function assignAttr(O,A){
-  for (i in A) O.setAttributeNS(null,i, A[i])
+    for (i in A) O.setAttributeNS(null,i, A[i]);
 } 
 
-function add(evt){
+function add_hexagon(x_pixel,y_pixel, x, y){
   var C=document.createElementNS(xmlns,"polygon");
-  var stroke=Color();
-  var stroke_width="5";
-  var style="fill:" + Color();
-  var points = hexagon_vertices(evt.clientX, evt.clientY, 100);
-  var Attr={
-    "points":points,
-    "stroke":stroke,
-    "style":style,
-    "stroke-width":stroke_width,
-  }
+  var stroke="black";
+  var style="fill:white";
+  var points = hexagon_vertices(x_pixel, y_pixel, side_length);
+    var Attr={
+        "points":points,
+        "stroke":stroke,
+        "style":style,
+        "stroke-width":stroke_width,
+        "onmouseover":"highlight(evt)",
+        "onmouseout":"highlight(evt)",
+        "onmouseup":"changecolor(evt)",
+        "id":"hex." + x + "." + y,
+    }
   assignAttr(C,Attr);
   //alert(C);
   Root.appendChild(C);
+}
+
+function highlight(evt) {
+    var T=evt.target;
+    if (evt.type=="mouseover") {
+        T.setAttributeNS(null,"stroke-width",stroke_highlight);
+        if (m_flag == true) {
+            changecolor(evt);
+        }
+    }
+    else T.setAttributeNS(null,"stroke-width",stroke_width);
+}
+
+function changecolor(evt) {
+  var T=evt.target;
+  T.setAttributeNS(null,"style","fill:" + Color());
 }
 
 function Color(){
@@ -31,9 +108,9 @@ function Color(){
 }
 
 function tip_height(side_length) {
-  var result=Math.sqrt(Math.pow(side_length, 2) - Math.pow(side_length / 2, 2))
+    var result=Math.sqrt(Math.pow(side_length, 2) - Math.pow(side_length / 2, 2));
   //alert(result);
-  return result;
+    return result;
 }
 
 function tip_base(side_length) {
@@ -53,7 +130,7 @@ function hexagon_vertices(x, y, side_length) {
   vertices[4] = (x + b + side_length) + "," + (y + h);
   vertices[5] = (x + b) + "," + (y + h);
   
-  result = ""
+    result = "";
   for (var i = 0; i < 6; i++) {
     result = result + vertices[i] + " ";
   }
@@ -61,9 +138,6 @@ function hexagon_vertices(x, y, side_length) {
   return(result);
 }
 
-function teste() {
-  alert(2 + "hej" + 5)
-}
 ]]>
 </script>
 	
