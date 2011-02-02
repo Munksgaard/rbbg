@@ -2,11 +2,11 @@ var gCanvasElement;
 var gDrawingContext;
 var gWidth = 15;
 var gHeight = 10;
-
+var color = "red";
 var side_length = 30;
 
 function init() {
-    var pixel_width = pixelwidth(gWidth, side_length);
+    var pixel_width = pixelwidth(gWidth, side_length); 
     var pixel_height = pixelheight(gHeight, side_length);
 
     //alert(pixel_width + ", " + pixel_height);
@@ -21,6 +21,10 @@ function init() {
     gDrawingContext = gCanvasElement.getContext("2d");
     document.body.appendChild(canvasElement);
 
+    var colorindicator = document.getElementById("colorindicator");
+    colorindicator.value = color;
+    colorindicator.style = "background-color: " + color + ";";
+
     init_hexgrid();
     //init_squaregrid();
 }
@@ -29,7 +33,7 @@ function hexOnClick(evt) {
     var hex_coords = findHexagon(evt);
     
     //alert(hex_coords);
-    add_hexagon(hex_coords[0], hex_coords[1], "red");
+    add_hexagon(hex_coords[0], hex_coords[1], color);
 }
 
 function findHexagon(evt) {
@@ -187,4 +191,28 @@ function tip_base(side_length) {
   var result=Math.sqrt(Math.pow(side_length, 2) - Math.pow(tip_height(side_length), 2));
   //alert(result);
   return(result);
+}
+
+function color_set(evt) {
+  var colorfield = document.getElementById("hexcolor");
+  color = colorfield.value;
+  var colorindicator = document.getElementById("colorindicator");
+  colorindicator.value = color;
+  colorindicator.style = "background-color: " + color + ";";
+}
+
+function size_set(evt) {
+  var newwidth = document.getElementById("hexwidth").value;
+  var newheight = document.getElementById("hexheight").value;
+
+  gWidth = newwidth
+  gHeight = newheight
+
+  var pixel_width = pixelwidth(newwidth, side_length);
+  var pixel_height = pixelheight(newheight, side_length);
+
+  gCanvasElement.width = pixel_width;
+  gCanvasElement.height = pixel_height;
+
+  init_hexgrid()
 }
