@@ -14,10 +14,43 @@
     <input type="submit" value="Change color"
            onclick="clickChangeColor()"></input>
     <br />
+    Preset colors:
+       <div style="clear: both;"></div>
+       <div class="presetColor" style="height: 25px;
+                                       width: 25px; border: 1px solid
+                                       #d4d4d4; background-color: white; 
+                                       float: left;"
+            onmouseover="this.style.cursor='pointer'"
+            onclick='color_set("white")'></div>
+       <div class="presetColor" style="height: 25px;
+                                       width: 25px; border: 1px solid
+                                       #d4d4d4; background-color: blue; 
+                                       float: left;" 
+            onmouseover="this.style.cursor='pointer'"
+            onclick='color_set("blue")'></div> 
+       <div class="presetColor" style="height: 25px;
+                                       width: 25px; border: 1px solid
+                                       #d4d4d4; background-color: red; 
+                                       float: left;"
+            onmouseover="this.style.cursor='pointer'"
+            onclick='color_set("red")'></div> 
+       <div class="presetColor" style="height: 25px;
+                                       width: 25px; border: 1px solid
+                                       #d4d4d4; background-color: green;
+                                       float: left;"
+            onmouseover="this.style.cursor='pointer'"
+            onclick='color_set("green")'></div> 
+       <div class="presetColor" style="height: 25px;
+                                       width: 25px; border: 1px solid
+                                       #d4d4d4; background-color: black;
+                                       float: left;"
+            onmouseover="this.style.cursor='pointer'"
+            onclick='color_set("black")'></div>
+       <div style="clear: both;"></div>
     Width (in hexagons): <input type="text" id="hexwidth"/> 
     Heigth (in hexagons): <input type="text" id="hexheight"/>
     <input type="submit" value="Change grid size"
-           onclick="size_set(evt)"/><br/>
+           onclick="size_set()"/><br/>
     <input type="submit" value="Download SVG"
            onclick="clickDownloadSVG()"><br/>
   </body>

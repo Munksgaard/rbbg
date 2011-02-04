@@ -38,6 +38,9 @@ function init() {
 
     color_set(gColor);
 
+    document.getElementById("hexwidth").value = gWidth;
+    document.getElementById("hexheight").value = gHeight;
+
     init_hexgrid();
     //init_squaregrid();
 }
@@ -220,18 +223,19 @@ function tip_base(side_length) {
 
 function clickChangeColor() {
   var color = document.getElementById("hexcolor").value;
-  gColor = color;
+  //gColor = color;
   color_set(color);
 }
 
 function color_set(color) {
+  gColor = color;
   var colorindicator = document.getElementById("colorindicator");
   colorindicator.style.backgroundColor = color;
   var colortext = document.getElementById("colortext");
   colortext.innerText = color;
 }
 
-function size_set(evt) {
+function size_set() {
   var answer = confirm("Changing the grid size will reset the grid.\n\nAre you sure you want to continue?");
   if (answer) {
       var newwidth = document.getElementById("hexwidth").value;
