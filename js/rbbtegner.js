@@ -254,7 +254,7 @@ function size_set() {
   }
 }
 
-function clickDownloadSVG() {
+function generateSVG() {
     var content = '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n';
     content += '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" version="1.1">';
 //    var content = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg">\n';
@@ -289,32 +289,11 @@ function clickDownloadSVG() {
     content += "</svg>";
 
     //alert(content);
-//data:text/html;base64;charset=utf-8,data
-    var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
+    //data:text/html;base64;charset=utf-8,data
+    //var uriContent = "data:image/svg+xml," + encodeURIComponent(content);
     //alert(uriContent);
     //newWindow=window.open(uriContent, '_blank');
     //newWindow2=window.open('data:application/octet-stream;base64,SGVyZSBpcyBzb21lIHRleHQgdG8gZGF0YWZ5Lgo=');
 
-    Downloadify.create('downloadify',{
-        filename: function(){
-            return document.getElementById('filename').value;
-        },
-        data: content,
-        onComplete: function(){ 
-            alert('Your File Has Been Saved!'); 
-        },
-        onCancel: function(){ 
-            alert('You have cancelled the saving of this file.');
-        },
-        onError: function(){ 
-            alert('You must put something in the File Contents or there will be nothing to save!'); 
-        },
-        transparent: false,
-        swf: 'media/downloadify.swf',
-        downloadImage: 'images/download.png',
-        width: 100,
-        height: 30,
-        transparent: true,
-        append: false
-    });   
+   return(content);
 }

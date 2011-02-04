@@ -3,6 +3,8 @@
   <head>
     <title>Racerbilebanetegneren</title>
     <script src="js/rbbtegner.js"></script>
+    <script type="text/javascript" src="downloadify/swfobject.js"></script>
+    <script type="text/javascript" src="downloadify/downloadify.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
   </head>
   <body onload="init()">
@@ -50,9 +52,28 @@
     Width (in hexagons): <input type="text" id="hexwidth"/> 
     Heigth (in hexagons): <input type="text" id="hexheight"/>
     <input type="submit" value="Change grid size"
-           onclick="size_set()"/><br/>
-    <input type="submit" value="Download SVG"
-           onclick="clickDownloadSVG()">
+           onclick="size_set()"/><br/><br/>
+    <span id="downloadify">
+      You need flash to download the svg...
+    </span>
+    <script type="text/javascript"> 
+      Downloadify.create('downloadify',{
+      filename: 'racerbilebane.svg',
+      data: function() {
+      return generateSVG();
+      },
+      onComplete: function(){ alert('Your File Has Been Saved!'); },
+      onCancel: function(){ alert('You have cancelled the saving of this file.'); },
+      onError: function(){ alert('You must put something in the File Contents or there will be nothing to save!'); },
+      transparent: false,
+      swf: 'downloadify/downloadify.swf',
+      downloadImage: 'downloadify/download.png',
+      width: 100,
+      height: 30,
+      transparent: true,
+      append: false
+      });
+    </script> 
     <input type="submit" value="Reset"
            onclick="init_hexgrid()">
     <br/>
