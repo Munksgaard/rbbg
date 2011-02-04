@@ -3,18 +3,22 @@
   <head>
     <title>Canvastest</title>
     <script src="canvastest.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
   </head>
   <body onload="init()">
     <h1>Canvas test af racerbilebanetegneren</h1>
-    Current color: <input type="text" disabled="true"
-                          id="colorindicator"><br/>
+    Current color: <span id="colortext"></span> 
+    <input type="text" size="1" disabled="true" id="colorindicator"/>
+    <br/>
     <input type="text" id="hexcolor" name="hexcolor"></input>
-    <input type="submit" value="Skift farve"
-           onclick="color_set(evt)"></input> 
+    <input type="submit" value="Change color"
+           onclick="clickChangeColor()"></input>
     <br />
     Width (in hexagons): <input type="text" id="hexwidth"/> 
-    Height (in hexagons): <input type="text" id="hexheight"/>
-    <input type="submit" value="Skift størrelse"
-           onclick="size_set(evt)"/>
+    Heigth (in hexagons): <input type="text" id="hexheight"/>
+    <input type="submit" value="Change grid size"
+           onclick="size_set(evt)"/><br/>
+    <input type="submit" value="Download SVG"
+           onclick="clickDownloadSVG()"><br/>
   </body>
 </html>
