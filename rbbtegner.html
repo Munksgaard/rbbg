@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Racerbilebanetegneren</title>
+    <script src="js/rbbtegner.js"></script>
+    <script type="text/javascript" src="downloadify/swfobject.js"></script>
+    <script type="text/javascript" src="downloadify/downloadify.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+  </head>
+  <body onload="init()">
+    <h1>Racerbilebanetegneren</h1>
+    Current color: <span id="colortext"></span> 
+    <input type="text" size="1" disabled="true" id="colorindicator"/>
+    <br/>
+    <input type="text" id="hexcolor" name="hexcolor"></input>
+    <input type="submit" value="Change color"
+           onclick="clickChangeColor()"></input>
+    <br />
+    Preset colors:
+       <div style="clear: both;"></div>
+       <div class="presetColor" style="height: 25px;
+                                       width: 25px; border: 1px solid
+                                       #d4d4d4; background-color: white; 
+                                       float: left;"
+            onmouseover="this.style.cursor='pointer'"
+            onclick='color_set("white")'></div>
+       <div class="presetColor" style="height: 25px;
+                                       width: 25px; border: 1px solid
+                                       #d4d4d4; background-color: blue; 
+                                       float: left;" 
+            onmouseover="this.style.cursor='pointer'"
+            onclick='color_set("blue")'></div> 
+       <div class="presetColor" style="height: 25px;
+                                       width: 25px; border: 1px solid
+                                       #d4d4d4; background-color: red; 
+                                       float: left;"
+            onmouseover="this.style.cursor='pointer'"
+            onclick='color_set("red")'></div> 
+       <div class="presetColor" style="height: 25px;
+                                       width: 25px; border: 1px solid
+                                       #d4d4d4; background-color: green;
+                                       float: left;"
+            onmouseover="this.style.cursor='pointer'"
+            onclick='color_set("green")'></div> 
+       <div class="presetColor" style="height: 25px;
+                                       width: 25px; border: 1px solid
+                                       #d4d4d4; background-color: black;
+                                       float: left;"
+            onmouseover="this.style.cursor='pointer'"
+            onclick='color_set("black")'></div>
+       <div style="clear: both;"></div>
+    Width (in hexagons): <input type="text" id="hexwidth"/> 
+    Heigth (in hexagons): <input type="text" id="hexheight"/>
+    <input type="submit" value="Change grid size"
+           onclick="size_set()"/><br/><br/>
+    <span id="downloadify">
+      You need flash to download the svg...
+    </span>
+    <script type="text/javascript"> 
+      Downloadify.create('downloadify',{
+      filename: 'racerbilebane.svg',
+      data: function() {
+      return generateSVG();
+      },
+      onComplete: function(){ alert('Your File Has Been Saved!'); },
+      onCancel: function(){ alert('You have cancelled the saving of this file.'); },
+      onError: function(){ alert('You must put something in the File Contents or there will be nothing to save!'); },
+      transparent: false,
+      swf: 'downloadify/downloadify.swf',
+      downloadImage: 'downloadify/download.png',
+      width: 100,
+      height: 30,
+      transparent: true,
+      append: false
+      });
+    </script> 
+    <input type="submit" value="Reset"
+           onclick="init_hexgrid()">
+    <br/>
+  </body>
+</html>
