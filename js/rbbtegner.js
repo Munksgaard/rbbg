@@ -273,7 +273,7 @@ function generateSVG() {
     //alert(hexagonTable)
     for (x=0; x<hexagonTable.length; x++) {
         for (y=0; y<hexagonTable[x].length; y++) {
-            if (hexagonTable[x][y]) {
+            if (document.getElementById("drawWhiteHexagons").checked || hexagonTable[x][y]) {
                 polygon = "<polygon points=\"";
                 h = tip_height(side_length);
                 b = tip_base(side_length);
