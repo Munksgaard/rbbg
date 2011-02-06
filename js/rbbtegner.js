@@ -18,12 +18,7 @@ function init() {
     var pixel_width = pixelwidth(gWidth, side_length); 
     var pixel_height = pixelheight(gHeight, side_length);
 
-    var underflow = hexgrid_underflow(gWidth)
-    hexagonTable = Array(underflow);
-    for (i=0; i<hexagonTable.length; i++) {
-        hexagonTable[i] = Array(2 * underflow + gHeight);
-    }
-
+	initHexagonTable();
     //alert(hexagonTable);
 
     var canvasElement = document.createElement("canvas");
@@ -43,6 +38,14 @@ function init() {
 
     init_hexgrid();
     //init_squaregrid();
+}
+
+function initHexagonTable() {
+	var underflow = hexgrid_underflow(gWidth)
+    hexagonTable = Array(underflow);
+    for (i=0; i<hexagonTable.length; i++) {
+        hexagonTable[i] = Array(2 * underflow + gHeight);
+    }
 }
 
 function hexOnClick(evt) {
@@ -132,7 +135,7 @@ function pixelheight(n, l) {
 }
 
 function init_hexgrid() {
-    n = hexgrid_underflow(gWidth);
+    var n = hexgrid_underflow(gWidth);
     //alert(n);
     for (var x = 0; x < n; x++) {
         for (var y = (0 - n); y < (n + gHeight); y++) {
@@ -241,8 +244,8 @@ function size_set() {
       var newwidth = document.getElementById("hexwidth").value;
       var newheight = document.getElementById("hexheight").value;
 
-      gWidth = newwidth
-      gHeight = newheight
+      gWidth = parseInt(newwidth)
+      gHeight = parseInt(newheight)
 
       var pixel_width = pixelwidth(newwidth, side_length);
       var pixel_height = pixelheight(newheight, side_length);
@@ -250,6 +253,7 @@ function size_set() {
       gCanvasElement.width = pixel_width;
       gCanvasElement.height = pixel_height;
 
+      initHexagonTable();
       init_hexgrid()
   }
 }
