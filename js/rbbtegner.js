@@ -56,16 +56,20 @@ function hexOnClick(evt) {
 }
 
 function findHexagon(evt) {
+	var tmp = getCursorPosition(evt);
+	var x = tmp[0];
+	var y = tmp[1];
+
     var b = tip_base(side_length);
     var h = tip_height(side_length);
     var block_width = b * 2 + side_length * 2;
     var block_height = 2*h;
 
-    var block_x = parseInt(evt.offsetX / block_width);
-    var block_y = parseInt(evt.offsetY / block_height);
+    var block_x = parseInt(x / block_width);
+    var block_y = parseInt(y / block_height);
 
-    var block_internal_x = evt.offsetX - block_x * block_width;
-    var block_internal_y = evt.offsetY - block_y * block_height;
+    var block_internal_x = x - block_x * block_width;
+    var block_internal_y = y - block_y * block_height;
     
     var est_x_hex = block_x * 2
     var est_y_hex = block_y - block_x
@@ -300,4 +304,21 @@ function generateSVG() {
     //newWindow2=window.open('data:application/octet-stream;base64,SGVyZSBpcyBzb21lIHRleHQgdG8gZGF0YWZ5Lgo=');
 
    return(content);
+}
+
+function getCursorPosition(e) {
+    var x;
+    var y;
+    if (e.pageX != undefined && e.pageY != undefined) {
+		x = e.pageX;
+		y = e.pageY;
+    }
+    else {
+		x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+		y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+	}
+	x -= gCanvasElement.offsetLeft;
+    y -= gCanvasElement.offsetTop;
+	
+	return [x,y];
 }
