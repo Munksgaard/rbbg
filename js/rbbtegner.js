@@ -274,6 +274,13 @@ function generateSVG() {
     for (x=0; x<hexagonTable.length; x++) {
         for (y=0; y<hexagonTable[x].length; y++) {
             if (document.getElementById("drawWhiteHexagons").checked || hexagonTable[x][y]) {
+				var color;
+				if (document.getElementById("drawWhiteHexagons").checked && !hexagonTable[x][y]) {
+					color = "white";
+				} else {
+					color = hexagonTable[x][y];
+				}
+				
                 polygon = "<polygon points=\"";
                 h = tip_height(side_length);
                 b = tip_base(side_length);
@@ -286,7 +293,7 @@ function generateSVG() {
                     polygon += vertices[i][0] + "," + (vertices[i][1]) + " ";
                 }
 
-                polygon += "\" style=\"fill:" + hexagonTable[x][y] + "; stroke: black; stroke-width: 2;\" />\n";
+                polygon += "\" style=\"fill:" + color + "; stroke: black; stroke-width: 2;\" />\n";
 //0,86.60254 50.0,0.0 150.0,0.0 200.0,86.60254 150.0,173.20508 50.0,173.20508 50.0,173.20508" style="fill:WHITE; stroke:BLACK; stroke-width:10" />
                 //alert(polygon);
                 content += polygon;
