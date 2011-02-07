@@ -50,9 +50,12 @@ function initHexagonTable() {
 
 function hexOnClick(evt) {
     var hex_coords = findHexagon(evt);
-    
-    //alert(hex_coords);
-    add_hexagon(hex_coords[0], hex_coords[1], gColor);
+
+    if (evt.ctrlKey) {
+        add_hexagon(hex_coords[0], hex_coords[1], "white");
+    } else {
+        add_hexagon(hex_coords[0], hex_coords[1], gColor);
+    }
 }
 
 function findHexagon(evt) {
