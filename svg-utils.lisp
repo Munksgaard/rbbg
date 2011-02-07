@@ -1,4 +1,4 @@
-(defstruct (hexagon (:conc-name nil))
+(defstruct hexagon
   x ; få lavet alias ting
   y
   (color 'white)
