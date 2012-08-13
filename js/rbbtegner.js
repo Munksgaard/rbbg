@@ -266,8 +266,11 @@ function size_set() {
 }
 
 function generateSVG() {
+    var pixel_width = pixelwidth(gWidth, side_length);
+    var pixel_height = pixelheight(gHeight, side_length);
+
     var content = '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n';
-    content += '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" version="1.1">';
+    content += '<svg xmlns="http://www.w3.org/2000/svg" width="' + pixel_width + 'pt" height="' + pixel_height + 'pt" version="1.1">';
 //    var content = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg">\n';
   //  content += '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n'
     var polygon;
