@@ -15,10 +15,10 @@ gColor = "red";
 side_length = 30;
 
 function init() {
-    var pixel_width = pixelwidth(gWidth, side_length); 
+    var pixel_width = pixelwidth(gWidth, side_length);
     var pixel_height = pixelheight(gHeight, side_length);
 
-	initHexagonTable();
+    initHexagonTable();
     //alert(hexagonTable);
 
     var canvasElement = document.createElement("canvas");
@@ -41,7 +41,7 @@ function init() {
 }
 
 function initHexagonTable() {
-	var underflow = hexgrid_underflow(gWidth)
+    var underflow = hexgrid_underflow(gWidth)
     hexagonTable = Array(underflow);
     for (i=0; i<hexagonTable.length; i++) {
         hexagonTable[i] = Array(2 * underflow + gHeight);
@@ -59,9 +59,9 @@ function hexOnClick(evt) {
 }
 
 function findHexagon(evt) {
-	var tmp = getCursorPosition(evt);
-	var x = tmp[0];
-	var y = tmp[1];
+    var tmp = getCursorPosition(evt);
+    var x = tmp[0];
+    var y = tmp[1];
 
     var b = tip_base(side_length);
     var h = tip_height(side_length);
@@ -73,7 +73,7 @@ function findHexagon(evt) {
 
     var block_internal_x = x - block_x * block_width;
     var block_internal_y = y - block_y * block_height;
-    
+
     var est_x_hex = block_x * 2
     var est_y_hex = block_y - block_x
 
@@ -114,22 +114,22 @@ function findHexagon(evt) {
             } else {
                 return [est_x_hex +1, est_y_hex];
             }
-        }            
+        }
     }
 }
 
 function init_squaregrid() {
-    for (var x = 0.5; x < 600; x += 90) { 
-        gDrawingContext.moveTo(x, 0); 
-        gDrawingContext.lineTo(x, 500); 
+    for (var x = 0.5; x < 600; x += 90) {
+        gDrawingContext.moveTo(x, 0);
+        gDrawingContext.lineTo(x, 500);
     }
 
-    for (var y = 0.5; y < 500; y += 52) { 
-        gDrawingContext.moveTo(0, y); 
-        gDrawingContext.lineTo(600, y); 
+    for (var y = 0.5; y < 500; y += 52) {
+        gDrawingContext.moveTo(0, y);
+        gDrawingContext.lineTo(600, y);
     }
 
-    gDrawingContext.strokeStyle = "black"; 
+    gDrawingContext.strokeStyle = "black";
     gDrawingContext.stroke();
 }
 
@@ -148,8 +148,8 @@ function init_hexgrid() {
         for (var y = (0 - n); y < (n + gHeight); y++) {
 //    for (var x = -4; x < 4; x++) {
 //        for (var y = -4; y < 4; y++) {
-            
-            
+
+
             //alert(x_pixel);
             //alert(y_pixel);
             add_hexagon(x, y, "white")
@@ -158,7 +158,7 @@ function init_hexgrid() {
 }
 
 function hexgrid_underflow(grid_width) {
-  // Calculates the amount of hexagons needed on the vertical axis to get a 
+  // Calculates the amount of hexagons needed on the vertical axis to get a
   //rectangular grid of a certain size
   return (grid_width);
 }
@@ -186,7 +186,7 @@ function add_hexagon(x, y, color){
 // brug x_pixel og y_pixel
 function draw_hexagon(x_pixel, y_pixel, color) {
     var vertices = hexagon_vertices(x_pixel, y_pixel, side_length);
-    
+
     len = vertices.length;
 //    alert(len);
 
@@ -214,7 +214,7 @@ function hexagon_vertices(x_pixel, y_pixel, side_length) {
     vertices[3] = [x_pixel + (2 * b) + side_length, y_pixel];
     vertices[4] = [x_pixel + b + side_length, y_pixel + h];
     vertices[5] = [x_pixel + b, y_pixel + h];
-  
+
     return(vertices);
 }
 
@@ -256,7 +256,7 @@ function size_set() {
 
       var pixel_width = pixelwidth(newwidth, side_length);
       var pixel_height = pixelheight(newheight, side_length);
-      
+
       gCanvasElement.width = pixel_width;
       gCanvasElement.height = pixel_height;
 
@@ -266,7 +266,7 @@ function size_set() {
 }
 
 function generateSVG() {
-    var pixel_width = pixelwidth(gWidth, side_length); 
+    var pixel_width = pixelwidth(gWidth, side_length);
     var pixel_height = pixelheight(gHeight, side_length);
 
     var content = '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n';
@@ -280,19 +280,18 @@ function generateSVG() {
     for (x=0; x<hexagonTable.length; x++) {
         for (y=0; y<hexagonTable[x].length; y++) {
             if (document.getElementById("drawWhiteHexagons").checked || hexagonTable[x][y]) {
-				var color;
-				if (document.getElementById("drawWhiteHexagons").checked && !hexagonTable[x][y]) {
-					color = "white";
-				} else {
-					color = hexagonTable[x][y];
-				}
-				
+                var color;
+                if (document.getElementById("drawWhiteHexagons").checked && !hexagonTable[x][y]) {
+                    color = "white";
+                } else {
+                    color = hexagonTable[x][y];
+                }
+
                 polygon = "<polygon points=\"";
                 h = tip_height(side_length);
                 b = tip_base(side_length);
                 x_pixel = (2*side_length - b) * x;
                 y_pixel = (2 * h * y) + ((x + 1) * h) - (2* h * hexgrid_underflow(gWidth)) + 1;
-                
                 vertices = hexagon_vertices(x_pixel, y_pixel, side_length);
 
                 for (i=0; i<vertices.length; i++) {
@@ -323,15 +322,15 @@ function getCursorPosition(e) {
     var x;
     var y;
     if (e.pageX != undefined && e.pageY != undefined) {
-		x = e.pageX;
-		y = e.pageY;
+        x = e.pageX;
+        y = e.pageY;
     }
     else {
-		x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-		y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-	}
-	x -= gCanvasElement.offsetLeft;
+        x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    }
+    x -= gCanvasElement.offsetLeft;
     y -= gCanvasElement.offsetTop;
-	
-	return [x,y];
+
+return [x,y];
 }
